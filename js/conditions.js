@@ -4,7 +4,11 @@ window.conditions = {
 	vbRating: { 
 		warning: { 
 			rain: false, 
-			temp: false 
+			temp: {
+				high: false,
+				low: false,
+				current: false
+			} 
 		} 
 	},
 
@@ -30,7 +34,7 @@ window.conditions = {
 
 	temp: {
 
-						// Function for temperature status
+		// Function for temperature status
 		tempTempl: function (status, temperature) {
 			temp = '<span class="' + status + '">' + temperature + '&deg;F</span>';
 		},
@@ -76,15 +80,15 @@ window.conditions = {
 			if( temperature < 64 ) {
 				conditions.temp.tempTempl("alert", temperature);
 				conditions.vbRating.temp = false; // Temp is bad for volleyball index
-				conditions.vbRating.warning.temp = false;	
+				conditions.vbRating.warning.temp.current = false;	
 			} else if ( temperature > 90 ) {
 				conditions.tempTempl("warning", temperature);
 				conditions.vbRating.temp = true; // Temp is good for volleyball index
-				conditions.vbRating.warning.temp = true;	
+				conditions.vbRating.warning.temp.current = true;	
 			} else {
 				conditions.temp.tempTempl("good", temperature);
 				conditions.vbRating.temp = true; // Temp is good for volleyball index
-				conditions.vbRating.warning.temp = false;	
+				conditions.vbRating.warning.temp.current = false;	
 			}
 
 			return temp;
@@ -140,8 +144,8 @@ window.conditions = {
 		// Changing scope of variable
 		var index;
 
-		if( conditions.vbRating.temp && conditions.vbRating.cond && conditions.vbRating.wind) {
-			if( conditions.vbRating.warning.temp || conditions.vbRating.warning.rain ) {
+		if( conditions.vbRating.temp && conditions.vbRating.cond && conditions.vbRating.wind && conditions.vbRating.rain ) {
+			if( conditions.vbRating.warning.temp.high || conditions.vbRating.warning.temp.low || conditions.vbRating.warning.rain ) {
 				vbIndexTempl('warning', 'Currently Conditions are Questionable');
 			} else {
 				vbIndexTempl('good', 'Currently Conditions are Good');

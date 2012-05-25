@@ -10,7 +10,11 @@ window.themes = {
 			time = j.observation_time,
 			icon = j.icon_url;
 
+		// Some resets on conditions that do not apply to current conditions, but are left over from forecast on a "Go" button refresh
+		conditions.vbRating.rain = true
 		conditions.vbRating.warning.rain = false;
+		conditions.vbRating.warning.temp.high = false;
+		conditions.vbRating.warning.temp.low = false;
 
 		// Add template to body
 		$('#results #currentConditions').html( template.current.build( loc, time, conditions.temp.current(j.temp_f), conditions.cond(j.weather), conditions.wind(j.wind_mph), icon, conditions.vbIndex ) );
