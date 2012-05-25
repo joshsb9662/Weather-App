@@ -1,0 +1,151 @@
+<!--
+
+	Volleyball Weather App
+	Created by: Joshua Brittin
+	Version: 0.4.1
+	thiswayoutproductions.com
+
+-->
+
+<!DOCTYPE HTML>
+<html lang="en-US" class="no-js">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+
+	<title>The Volleyball Weather Wonder App</title>
+	
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.css" />
+	<link rel="stylesheet" href="css/mobile.css">
+
+	<script src="js/modernizr.custom.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	
+	<script>
+		$(document).bind("mobileinit", function(){
+			$.extend(  $.mobile , {
+				ajaxEnabled: false // Turn jQuery mobile AJAX off
+			});
+		});
+	</script>
+	
+	<script src="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.js"></script>
+
+</head>
+
+<body>
+
+<div data-role="page">
+
+	<section id="search" data-role="header" data-position="fixed">
+
+		<h1>Volleyball Conditions</h1>
+
+		<form action="#" method="post" data-transition="none">
+
+			<input type="text" placeholder="City, State OR Zip">
+
+			<input type="submit" value="Go" data-role="button">
+
+		</form>
+
+	</section>
+
+	<div id="placeholder"></div>
+
+	<section id="results" data-role="content">
+		
+		<section id="currentConditions" ></section>
+
+		<section id="forecast" >
+			
+			<div data-role="controlgroup" data-type="horizontal">
+				<a data-role="button"  data-mini="true" class="summary_btn">Summary</a>
+				<a data-role="button"  data-mini="true" class="details_btn">Details</a>
+				<a data-role="button"  data-mini="true" class="hourly_btn">Hourly</a>
+			</div>
+
+			<ul class="summary"></ul>
+			<ul class="details"></ul>
+			<ul class="hourly"></ul>
+
+		</section>
+
+		<section id="alerts">
+			
+			<h2>Weather Alerts</h2>
+
+			<ul></ul>
+
+		</section>
+
+	</section>
+
+	<footer data-role="footer" data-position="fixed">
+
+		<nav data-role="navbar">
+			<ul>
+				<li id="current_btn"><a href="#">Right Now</a></li>
+				<li id="forecast_btn"><a href="#">Outlook</a></li>
+				<li id="alerts_btn"><a href="#">Alerts</a></li>
+			</ul>
+		</nav>
+
+	</footer>
+
+</div>
+
+<script id="currentTemplate" type="template">
+
+	<h2>{{location}}</h2>
+	<h6>{{time}}</h6>
+	<img src="{{src}}">
+	<h4>{{temp}} - {{cond}}</h4>	
+	<h4>{{wind}}</h4>
+	<h3>{{vbIndex}}</h3>
+
+</script>
+
+<script id="summaryTemplate" type="template">
+
+	<li data-role="listview">
+		<h3>{{day}}</h3>
+		<img src="{{icon}}">
+		<p>Hi - {{high}}/Low - {{low}}</p>
+		<p>{{wind}}</p>
+		<p>{{rain}}</p>
+		<h3 class="index">{{vbIndex}}</h3>
+	</li>
+
+</script>
+
+<script id="detailsTemplate" type="template">
+
+	<li>
+		<h3>{{period}}</h3>
+		<img src="{{src}}">
+		<p>{{text}}</p>
+		<p>{{rain}}</p>
+	</li>
+
+</script>
+
+<script id="alertsTemplate" type="template">
+
+	<li>
+		<h3>{{description}}</h3>
+		<h6><span class="alert">Expires at {{expires}}</span></h6>
+		<p>{{message}}</p>
+		<h6>Issued at {{date}}</h6>
+	</li>
+
+</script>
+
+<script src="js/template.js"></script>
+<script src="js/conditions.js"></script>
+<script src="js/themes.js"></script>
+<script src="js/weather.js"></script>
+<script src="js/ui.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,210 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+html {
+	height: 100%;
+}
+body {
+	line-height: 1;
+	font-family: Helvetica, Arial, sans-serif;
+    color: #333;
+	text-align: center;
+}
+
+/*.ui-mobile, .ui-mobile .ui-page {
+	min-height: 400px;
+}*/
+
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+h1, h2, h3 {
+	text-transform: capitalize;
+}
+
+h2 {
+	font-size: 1.875em;
+	margin-top: .25em;
+}
+
+h3 {
+	font-size: 1.125em;
+	margin: 1em 0;
+	padding-top: 1em;
+}
+
+h4 {
+	font-size: 1em;
+	line-height: .875em;
+	padding-bottom: .65em;
+}
+
+	#currentConditions h3 {
+		margin: 1.5em 0 .75em; 
+	}
+
+h6 {
+	font-size: .75em;
+	font-style: italic;
+	margin: .8em 0 1em;
+	padding: 0 .7em;
+}
+
+p {
+	font-size: .875em;
+	line-height: 1.5em;
+	padding-bottom: .65em;
+}
+	li p {
+		line-height: 1.25em;
+		padding-bottom:.5em;
+	}
+
+
+/****** Header ******/
+
+#search {
+	height: 105px;
+	border-bottom: 1px solid rgba(255,255,255, .75);
+	box-shadow: 0 1px 3px rgba(0,0,0, .4);
+}
+	#search h1 {
+		color: #fff;
+	}
+
+	.ui-header h1.ui-title {
+		margin-left: 10%;
+		margin-right: 10%;
+	}
+
+	.ui-header input.ui-input-text {
+		width: 200px;
+		display: inline-block;
+	}
+
+
+/****** Nav ******/
+
+nav ul, .ui-navbar, .ui-grid-b {
+	overflow: visible;
+}
+
+
+/****** Content ******/
+
+#alerts, #forecast, .details, .hourly {
+	display: none;
+}
+
+#forecast h3, #alerts li {
+	border-top: 1px solid #fff;
+	box-shadow: 0 -1px 0 #ddd;
+	margin-top: 25px;
+	}
+	#alerts li:first-child, h3.index {
+		border-top: none !important;
+		box-shadow: none !important;
+	}
+	h3.index {
+		margin: 0;
+		padding: 0;
+	}
+
+/****** Alerts ******/
+
+.alert_icon {
+	line-height: 22px;
+	background: rgb(224,4,8); /* Old browsers */
+	background: -moz-linear-gradient(top, rgba(224,4,8,1) 0%, rgba(198,3,7,1) 44%, rgba(181,0,3,1) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(224,4,8,1)), color-stop(44%,rgba(198,3,7,1)), color-stop(100%,rgba(181,0,3,1))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, rgba(224,4,8,1) 0%,rgba(198,3,7,1) 44%,rgba(181,0,3,1) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, rgba(224,4,8,1) 0%,rgba(198,3,7,1) 44%,rgba(181,0,3,1) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, rgba(224,4,8,1) 0%,rgba(198,3,7,1) 44%,rgba(181,0,3,1) 100%); /* IE10+ */
+	background: linear-gradient(top, rgba(224,4,8,1) 0%,rgba(198,3,7,1) 44%,rgba(181,0,3,1) 100%); /* W3C */
+
+	-moz-border-radius: 21px;
+	-webkit-border-radius: 21px;
+	border-radius: 21px;
+	
+	-moz-box-shadow: 1px 3px 5px rgba(0,0,0,.5);
+	-webkit-box-shadow: 1px 3px 5px rgba(0,0,0,.5);
+	box-shadow: 1px 3px 5px rgba(0,0,0,.5);
+
+	border: 2px solid #fff;
+	width: 21px;
+	height: 21px;
+	display: block;
+	position: absolute;
+	top: -15px;
+	right: 6%;
+}
+
+.good {
+	color: green;
+}
+
+.warning {
+	color: darkorange;
+}
+
+.alert {
+	color: red;
+	font-style: italic;
+}
+
+
+/****** Loading ******/
+
+img.loader {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	margin: -16px 0 0 -16px;
+}
+
+/****** Desktop ******/
+@media screen and (min-width: 1025px) {
+	
+
+
+}
