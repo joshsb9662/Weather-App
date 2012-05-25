@@ -11,7 +11,6 @@ window.weather = {
 
 	// Initiate the function
 	init: function() {
-
 		// On load, if local storage has location, load it
 		if( Modernizr.localstorage ) {
 			if( localStorage.location ) {			
@@ -28,21 +27,16 @@ window.weather = {
 			// Set it in motion 
 			weather.connect();
 		});
-
 	},
 
 	// Get the location from the form
 	location: function() {
-
 		var input = $("form").find('input[type="text"]').val();
-
 		return input;
-	
 	},
 
 	// Build REST url for API call
 	restURL: function( type ) {
-
 		// If the form input is empty pull from local storage
 		if( this.location() === "" ){
 			var location = this.storage.load();		
@@ -51,49 +45,38 @@ window.weather = {
 		}
 		// Build url
 		var urlString = this.url + this.key + "/" + type + "/q/" + location + ".json?callback=?";
-
 		return urlString;
-	
 	},
 
 	// Connect to weather API
 	connect: function() {
-
 		// Loading animation
 		$("#results #currentConditions").html('<img src="img/ajax-loader.gif" class="loader" >')
 
 		// Call weather API, get current conditions
 		$.getJSON( this.restURL( this.forecast.current ), function( data ) {
-
 			console.log( data );
-
 			// If the location doesn't exist
 			if( data.response.error ) {
 				$('#results #currentConditions').html( "<h1>" + data.response.error.description + "</h1>" );
 			} else {
-
 				// Parse and diplay data
 				themes.currentCond( data );
 			}
-		
 		});
 
 		// Call weather API, get 3 day forecast conditions
 		$.getJSON( this.restURL( this.forecast.threeDay ), function( data ) {
-			
 			console.log( data );
 			themes.threeDay.summary( data );
 			themes.threeDay.details( data );
-
 		});
 
 
 		// Call weather API, get any alerts conditions
 		$.getJSON( this.restURL( this.forecast.alerts ), function( data ) {
-			
 			console.log( data );
 			themes.alerts( data );
-
 		});
 
 	},
@@ -109,14 +92,12 @@ window.weather = {
 					localStorage.location = weather.location();
 				}		
 			}
-
 		},
 
 		// Loads saved location
 		load: function() {
 			return localStorage.location;
 		}
-
 	}
 
 }; // End Weather Object

@@ -8,29 +8,87 @@ window.conditions = {
 		} 
 	},
 
-	temp: function(temperature) {
+	cond: function(weather) {
 
-		// Check temps
-		if( temperature < 62 ) {
-			tempTempl("alert", temperature);
-			this.vbRating.temp = false; // Temp is bad for volleyball index
-			this.vbRating.warning.temp = false;	
-		} else if ( temperature > 90 ) {
-			tempTempl("warning", temperature);
-			this.vbRating.temp = true; // Temp is a warning for volleyball index
-			this.vbRating.warning.temp = true;	
+		// If the weather equals any of these it's good
+		if( weather === "Overcast" || weather ===  "Clear" || weather === "Partly Cloudy" || weather === "Mostly Cloudy" || weather === "Scattered Clouds" ) {
+			condTempl("ok", weather)
+			conditions.vbRating.cond = true; // Conditions are good for volleyball index
 		} else {
-			tempTempl("good", temperature);
-			this.vbRating.temp = true; // Temp is good for volleyball index
-			this.vbRating.warning.temp = false;	
+			condTempl("alert", weather);
+			conditions.vbRating.cond = false; // Conditions are bad for volleyball index
+		}
+				
+		// Function for conditions status
+		function condTempl(status, weather) {
+			cond = '<span class="' + status + '">' + weather + "</span>";
 		}
 
-		// Function for temperature status
-		function tempTempl(status, temperature) {
+		return cond;
+
+	},
+
+	temp: {
+
+						// Function for temperature status
+		tempTempl: function (status, temperature) {
 			temp = '<span class="' + status + '">' + temperature + '&deg;F</span>';
-		}
+		},
+		
+		high: function(temperature) {
 
-		return temp;
+			if ( temperature > 90 ) {
+				conditions.temp.tempTempl("warning", temperature);
+				conditions.vbRating.temp = true; // Temp is a warning for volleyball index
+				conditions.vbRating.warning.temp.high = true;
+			} else if ( temperature < 63 ) {
+				conditions.temp.tempTempl("alert", temperature);
+				conditions.vbRating.temp = false; // Temp is a warning for volleyball index
+				conditions.vbRating.warning.temp.high = false;
+			} else {
+				conditions.temp.tempTempl("good", temperature);
+				conditions.vbRating.temp = true; // Temp is good for volleyball index
+				conditions.vbRating.warning.temp.high = false;
+			}
+
+			return temp;
+		
+		},
+
+		low: function(temperature){
+
+			if( temperature < 60 ) {
+				conditions.temp.tempTempl("alert", temperature);
+				conditions.vbRating.temp = false; // Temp is bad for volleyball index
+				conditions.vbRating.warning.temp.low = false;	
+			} else {
+				conditions.temp.tempTempl("good", temperature);
+				conditions.vbRating.temp = true; // Temp is good for volleyball index
+				conditions.vbRating.warning.temp.low = false;
+			}
+
+			return temp;
+
+		},
+
+		current: function(temperature) {
+			// Check temps
+			if( temperature < 64 ) {
+				conditions.temp.tempTempl("alert", temperature);
+				conditions.vbRating.temp = false; // Temp is bad for volleyball index
+				conditions.vbRating.warning.temp = false;	
+			} else if ( temperature > 90 ) {
+				conditions.tempTempl("warning", temperature);
+				conditions.vbRating.temp = true; // Temp is good for volleyball index
+				conditions.vbRating.warning.temp = true;	
+			} else {
+				conditions.temp.tempTempl("good", temperature);
+				conditions.vbRating.temp = true; // Temp is good for volleyball index
+				conditions.vbRating.warning.temp = false;	
+			}
+
+			return temp;
+		}
 
 	},
 
@@ -56,21 +114,21 @@ window.conditions = {
 	rain: function(rainCond){
 
 		if( rainCond >= 20 && rainCond <= 30 ) {
-			rainTempl("warning");
+			rainTempl("warning", rainCond);
 			this.vbRating.rain = true; // No rain is good for volleyball index
 			this.vbRating.warning.rain = true;
 		} else if ( rainCond > 30 ) {
-			rainTempl("alert");
+			rainTempl("alert", rainCond);
 			this.vbRating.rain = false; // Rain is bad for volleyball index
 			this.vbRating.warning.rain = false;
 		} else {
-			rainTempl("good");
+			rainTempl("good", rainCond);
 			this.vbRating.rain = true; // No rain is good for volleyball index
 			this.vbRating.warning.rain = false;
 		}
 
 		// Rain chance status template
-		function rainTempl(status) {
+		function rainTempl(status, rainCond) {
 			rain = '<span class="' + status + '">Rain chance ' + rainCond + '%</span>';
 		}
 

@@ -8,29 +8,12 @@ window.themes = {
 		var j = json.current_observation,
 			loc = j.display_location.full,
 			time = j.observation_time,
-
-			cond = function() {
-
-				// Function for conditions status
-				function condTempl(status) {
-					cond = '<span class="' + status + '">' + j.weather + "</span>";
-				}
-
-				// If the weather equals any of these it's good
-				if( j.weather === "Overcast" || j.weather ===  "Clear" || j.weather === "Partly Cloudy" || j.weather === "Mostly Cloudy" || j.weather === "Scattered Clouds" ) {
-					condTempl("ok")
-					conditions.vbRating.cond = true; // Conditions are good for volleyball index
-				} else {
-					condTempl("alert");
-					conditions.vbRating.cond = false; // Conditions are bad for volleyball index
-				}
-				return cond;
-			},
-
 			icon = j.icon_url;
 
+		conditions.vbRating.warning.rain = false;
+
 		// Add template to body
-		$('#results #currentConditions').html( template.current.build( loc, time, conditions.temp(j.temp_f), cond, conditions.wind(j.wind_mph), icon, conditions.vbIndex ) );
+		$('#results #currentConditions').html( template.current.build( loc, time, conditions.temp.current(j.temp_f), conditions.cond(j.weather), conditions.wind(j.wind_mph), icon, conditions.vbIndex ) );
 
 	},
 
@@ -45,13 +28,12 @@ window.themes = {
 
 				var day = j.date.weekday,
 					icon = j.icon_url,
-					low = conditions.temp(j.low.fahrenheit),
-					high = conditions.temp(j.high.fahrenheit),
+					low = conditions.temp.low(j.low.fahrenheit),
+					high = conditions.temp.high(j.high.fahrenheit),
 					wind = conditions.wind(j.avewind.mph),
 					rain = conditions.rain(j.pop);
 
-		$('#results #forecast ul.summary').append( template.threeDay.summary( day, icon, low, high, wind, rain, conditions.vbIndex ) );
-
+				$('#results #forecast ul.summary').append( template.threeDay.summary( day, icon, low, high, wind, rain, conditions.vbIndex ) );
 
 			});
 		},
