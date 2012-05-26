@@ -18,6 +18,8 @@ function pageTransitions (page, btn) {
 }
 
 // Swipe UI
+$.event.special.swipe.horizontalDistanceThreshold = 130
+
 $("body").swipeleft(function(){
 
 	if( $(pages[0]).is(":visible") ) {
