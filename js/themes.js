@@ -55,7 +55,7 @@ window.themes = {
 					icon = j.icon_url;
 						
 				// Add template to body
-				$('#results #forecast ul.details').append( template.threeDay.details( title, period, text, rain, icon ) );
+				$('#results #forecast ul.details').append( template.threeDay.details( title, period, text, conditions.rain(j.pop), icon ) );
 
 			});
 		}
