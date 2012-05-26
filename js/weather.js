@@ -2,7 +2,7 @@
 window.weather = {
 
 	url: "http://api.wunderground.com/api/", // URL
-	key: "827dd416813bb1c2", // Primary API key - 29c974bb433a9e7b
+	key: ["827dd416813bb1c2", "29c974bb433a9e7b"], // Two keys to balance developer API usage
 	forecast: {
 		current: "conditions",
 		threeDay: "forecast", 
@@ -43,8 +43,11 @@ window.weather = {
 		} else {
 			var location = this.location();			
 		}
+
+		randomKey = Math.floor( Math.random()*2); // Random number [0 or 1] for picking API key
+
 		// Build url
-		var urlString = this.url + this.key + "/" + type + "/q/" + location + ".json?callback=?";
+		var urlString = this.url + this.key[randomKey] + "/" + type + "/q/" + location + ".json?callback=?";
 		return urlString;
 	},
 
