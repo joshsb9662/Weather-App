@@ -1,14 +1,17 @@
 
 window.geo = {
 
-	key: "AIzaSyC0pSSNy0T6KpbkRbxVaGyJCzyiZhW9wrc",
-	url: "http://maps.googleapis.com/maps/api/geocode/json?latlng=",
+	key: "dj0yJmk9cXRnTnprbVlVQk1oJmQ9WVdrOVFXOTRlRlpUTnpnbWNHbzlNVGd4TlRRNU16ZzJNZy0tJnM9Y29uc3VtZXJzZWNyZXQmeD0yNw--",
+	url: "http://where.yahooapis.com/geocode?q=",
 	latLon: "",
 
 	init: function() {
 
 		if ( Modernizr.geolocation ) {
-			geo.locator();
+
+			$('#geoLocation').on('click', function(){
+				geo.locator();
+			});
 		}
 
 	},
@@ -27,16 +30,13 @@ window.geo = {
 	},
 
 	reverse: function() {
-		$.getJSON( geo.url + geo.latLon + "&sensor=true&callback=?", function( data ) {
+		$.getJSON( geo.url + geo.latLon + "&gflags=R&flags=J&appid=" + geo.key, function( data ) {
 
-			json = jQuery.parseJSON(data);
+			var zip = data.ResultSet.Results[0].uzip;
 
-			n = json.results.address_components.length;
+			$("form").find('input[type="text"]').val(zip);
 
-			console.log( n );
-		
-	
-			// data.results.address_components.
+			weather.connect();
 
 		});
 
