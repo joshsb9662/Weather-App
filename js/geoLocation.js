@@ -12,6 +12,10 @@ window.geo = {
 			$('#geoLocation').on('click', function(){
 				geo.locator();
 			});
+
+		} else {
+			// If geolocation API isn't found
+			alert('Geolocation not supported.');
 		}
 
 	},
@@ -25,11 +29,15 @@ window.geo = {
 			// Get google to convert it 
 			geo.reverse();
 
+		}, function() {
+			// If it is turned off or not working.
+			alert('Geolocation is not enabled.');
 		});
 
 	},
 
 	reverse: function() {
+		
 		$.getJSON( geo.url + geo.latLon + "&gflags=R&flags=J&appid=" + geo.key, function( data ) {
 
 			var zip = data.ResultSet.Results[0].uzip;
