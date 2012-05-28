@@ -40,7 +40,7 @@ window.conditions = {
 		},
 		
 		high: function(temperature) {
-
+			// High temp conditions
 			if ( temperature > 90 ) {
 				conditions.temp.tempTempl("warning", temperature);
 				conditions.vbRating.temp = true; // Temp is a warning for volleyball index
@@ -60,7 +60,7 @@ window.conditions = {
 		},
 
 		low: function(temperature){
-
+			// Low temp conditions
 			if( temperature < 60 ) {
 				conditions.temp.tempTempl("alert", temperature);
 				conditions.vbRating.temp = false; // Temp is bad for volleyball index
@@ -76,7 +76,7 @@ window.conditions = {
 		},
 
 		current: function(temperature) {
-			// Check temps
+			// Current conditions
 			if( temperature < 64 ) {
 				conditions.temp.tempTempl("alert", temperature);
 				conditions.vbRating.temp = false; // Temp is bad for volleyball index
@@ -116,7 +116,7 @@ window.conditions = {
 	},
 
 	rain: function(rainCond){
-
+		// Rain conditions
 		if( rainCond >= 20 && rainCond <= 30 ) {
 			rainTempl("warning", rainCond);
 			this.vbRating.rain = true; // No rain is good for volleyball index
