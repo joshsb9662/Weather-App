@@ -102,7 +102,23 @@ p {
 
 form {
 	display: inline;
-}
+	}
+	.ui-header .ui-btn-icon-left .ui-btn-inner {
+		padding: .6em 14px;
+	}
+	.ui-header .ui-btn-icon-left .ui-icon {
+		left: 10px;
+		background-image: url(../img/location.png);
+		background-position: 0 0;
+		width: 25px;
+		height: 25px;
+		margin-top: -13px;
+		left: 7px;
+
+		-webkit-box-shadow: none;
+		-moz-box-shadow: none;
+		box-shadow: none;
+	}
 
 /****** Header ******/
 
